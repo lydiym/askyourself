@@ -5,7 +5,12 @@
 App that asks you important questions
 
 ## build
-1. make debug  
+
+### Debug version
+1. execute: 
+    ```bash 
+    make debug
+    ```
 2. put 
     ```
     <receiver android:name="org.atq.atq.TaskReceiver" android:enabled="true" android:exported="true" />
@@ -25,4 +30,7 @@ App that asks you important questions
             {% endif %}
     ```
     to `.buildozer/android/platform/python-for-android/pythonforandroid/bootstraps/common/build/templates/Service.tmpl.java`  
-4. make debug
+4. execute: 
+    ```bash 
+    make debug
+    ```
