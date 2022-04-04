@@ -10,8 +10,7 @@ import android.os.Bundle;
 public class TaskReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent){
-    	arguments = ""
-        ServiceNotifier.start(context, arguments);
+        ServiceNotifier.start(context, "");
     }
 
 }
