@@ -1,8 +1,11 @@
+from datetime import datetime, timedelta
+
 import wrapt
-from jnius import autoclass
 from kivy.app import App
 from kivy.lang import Builder
 from kivy.utils import platform
+
+from schedule_utils import schedule_task
 
 SERVICE_NAME = u'{packagename}.Service{servicename}'.format(
     packagename=u'org.atq.atq',
@@ -35,13 +38,12 @@ def android_only(wrapped, instance, args, kwargs):
     if platform == 'android':
         return wrapped(*args, **kwargs)
     else:
-        raise NotImplementedError("not implemented on this platform")
+        raise NotImplementedError(f"not implemented for this platform: {platform}")
 
 
 class ATQApp(App):
     def build(self):
         self.service = None
-        self.start_service()
 
         self.root = Builder.load_string(KV)
         return self.root
@@ -54,17 +56,11 @@ class ATQApp(App):
 
     @android_only
     def start_service(self):
-        service = autoclass(SERVICE_NAME)
-        self.mActivity = autoclass(u'org.kivy.android.PythonActivity').mActivity
-        arguments = ''
-        service.start(self.mActivity, arguments)
-        self.service = service
+        schedule_task(datetime.now())
 
     @android_only
     def stop_service(self):
-        if self.service:
-            self.service.stop(self.mActivity)
-            self.service = None
+        pass
 
 
 if __name__ == '__main__':

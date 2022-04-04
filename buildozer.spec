@@ -28,7 +28,7 @@ source.include_exts = py,png,jpg,kv,atlas
 #source.exclude_patterns = license,images/*/*.jpg
 
 # (str) Application versioning (method 1)
-version = 0.1
+version = 0.2
 
 # (str) Application versioning (method 2)
 # version.regex = __version__ = ['"](.*)['"]
@@ -36,7 +36,7 @@ version = 0.1
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
-requirements = python3==3.8.8, kivy==2.0.0, plyer==2.0.0, apscheduler==3.7.0, wrapt==1.12.1, tzlocal~=2.0, pytz
+requirements = python3==3.8.8, kivy==2.0.0, plyer@git+https://github.com/kivy/plyer.git, apscheduler==3.7.0, wrapt==1.12.1, tzlocal~=2.0, pytz
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
@@ -55,7 +55,7 @@ icon.filename = %(source.dir)s/data/icon.png
 orientation = portrait
 
 # (list) List of service to declare
-services = Notifier:service.py
+services = Notifier:notifier.py:foreground
 
 #
 # OSX Specific
@@ -85,7 +85,7 @@ fullscreen = 0
 #android.presplash_color = #FFFFFF
 
 # (list) Permissions
-#android.permissions = INTERNET
+android.permissions = RECEIVE_BOOT_COMPLETED,FOREGROUND_SERVICE
 
 # (int) Target Android API, should be as high as possible.
 #android.api = 27
@@ -148,7 +148,7 @@ android.accept_sdk_license = True
 
 # (list) List of Java files to add to the android project (can be java or a
 # directory containing the files)
-#android.add_src =
+android.add_src = java_src
 
 # (list) Android AAR archives to add (currently works only with sdl2_gradle
 # bootstrap)
@@ -230,10 +230,10 @@ android.arch = armeabi-v7a
 #
 
 # (str) python-for-android fork to use, defaults to upstream (kivy)
-#p4a.fork = kivy
+p4a.fork = lydiym
 
 # (str) python-for-android branch to use, defaults to master
-#p4a.branch = master
+p4a.branch = feature/ServiceBootStart
 
 # (str) python-for-android git clone directory (if empty, it will be automatically cloned from github)
 #p4a.source_dir =
