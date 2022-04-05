@@ -19,4 +19,4 @@ def schedule_task(task_time: datetime):
     task_time = _to_millis(task_time)
     task_scheduler = TaskScheduler(context)
 
-    task_scheduler.scheuleTask(task_time)
+    task_scheduler.scheduleTask(task_time)
